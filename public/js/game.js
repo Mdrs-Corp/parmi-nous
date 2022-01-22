@@ -1,7 +1,6 @@
 const socket = io();
 socket.emit('initialization', gameId, playerId);
 
-
 // chat
 const chat = document.querySelector('#chat-box');
 const messageInput = document.querySelector('#message-input');
@@ -56,6 +55,9 @@ const direction = { x: 0, y: 0 };
 gameWindow.addEventListener('keydown', e => {
     if (e.repeat) return;
     let update = false;
+
+    if (e.key === '*')
+        debug = !debug;
 
     switch (e.key) {
         case bindings.left:
