@@ -58,8 +58,13 @@ class Player {
 
         for (const wall of walls) {
             const hit = lineLineIntersection(this.position, closest, wall.A, wall.B, 0.001);
-            if (hit !== null)
-                closest = hit;
+            if (hit !== null){
+              const dist = distance(wall.B, wall.A);
+              const vect = new Point((wall.B.x-wall.A.x)/dist, (wall.B.y-wall.A.y)/dist);
+              const diff = new Point(closest.x-hit.x, closest.y-hit.y);
+              const dotProduct = vect.x * diff.x + vect.y * diff.y;
+              closest = new Point(hit.x + vect.x * dotProduct, hit.y + vect.y * dotProduct);
+            }
         }
 
         this.position.x = closest.x;
@@ -72,7 +77,7 @@ class Player {
         players.forEach((player, id) => {
             if (id !== this.id && distance(this.position, player.position) <= this.viewDistance) {
                 let visible = true;
-                
+
                 for (const wall of walls) {
                     if (lineLineIntersection(this.position, player.position, wall.A, wall.B) !== null) {
                         visible = false;
