@@ -1,0 +1,28 @@
+doctype html
+html
+head
+    link(rel='stylesheet' href='/css/home.css')
+    title Parmi Nous - Accueil
+
+body
+    div(id='main')
+        img(id='title' src='/images/parmi_nous.svg')
+        input(id='name' type='text' placeholder='Pseudo' maxlength='10' autocomplete='on')
+        button(id='create' onclick='create()') Créer un salon
+
+        div
+            label(for='id') Rejoindre un salon
+            div
+                input(id='id' type='text' placeholder='Id du salon')
+                button(id='join' onclick='join()')
+
+    button(id='edit' onclick='(() => window.location = "https://cdn.discordapp.com/attachments/651479706067271681/933833921228054618/IMG_20220120_222124.jpg")()')
+    img(id='edit-bg', src='/images/edit_bg.png')
+
+    div(id='sus')
+        img(id='sus-img', src='/images/alive.png')
+    
+    div(id='tracker')
+    img(id='knife', src='/images/knife.png')
+
+script(src='/js/home.js')

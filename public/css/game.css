@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Varela';
+    src: url('/fonts/varela.ttf');
+}
+
+body {
+    margin: 0px;
+    background-color: #0a0a0a;
+    font-family: 'Varela';
+    color: white;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#game-window {
+    width: 75%;
+}
+
+canvas {
+    width: 100%;
+    border: solid white 2px;
+}
+
+#chat {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin-left: 5%;
+    border: solid white 2px;
+    border-radius: 6px;
+}
+
+#chat div:nth-child(1) {
+    height: 5%;
+    background-color: white;
+}
+
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 90%;
+}
+
+#chat-box :nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+.message, .event, .sys-event {
+    margin: 0px;
+    padding: 8px 0px 8px 8px;
+    word-break: break-word;
+}
+
+.event {
+    color: #ffc478;
+}
+
+.sys-event {
+    color: yellow
+}
+
+#message-box {
+    display: flex;
+    align-items: center;
+    height: 5%;
+    background-color: white;
+}
+
+#message-input {
+    width: 70%;
+    height: 60%;
+    margin-left: 10px;
+    padding-left: 10px;
+    background-color: #0a0a0a;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Varela';
+    font-size: 80%;
+    color: white;
+}

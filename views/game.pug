@@ -1,0 +1,24 @@
+doctype html
+html
+head
+    link(rel='stylesheet', href='/css/game.css')
+    title Parmi Nous - Salon ##{gameId}
+
+body
+    div(id='main')
+        div(id='game-window', tabindex='0')
+            canvas(width='1600', height='900')
+        div(id='chat')
+            div
+            div(id='chat-box')
+            div(id='message-box')
+                input(id='message-input', type='text', autocomplete='off')
+                input(id='send', type='button')
+
+script.
+    const gameId = '!{gameId}';
+    const playerId = '!{playerId}';
+script(src='/socket.io/socket.io.js')
+script(src='/js/game-maths.js')
+script(src='/js/game.js')
+script(src='/js/game-gfx.js')

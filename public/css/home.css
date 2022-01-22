@@ -1,0 +1,171 @@
+@font-face {
+    font-family: 'Varela';
+    src: url('/fonts/varela.ttf');
+}
+
+
+
+
+
+body, input, button {
+    background: #0a0a0a;
+    color: white;
+    font-family: 'Varela';
+}
+
+input, button {
+    font-size: 30px;
+    border: solid white 3px;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+@keyframes shake {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(10deg);
+    }
+}
+
+#sus {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+}
+
+#sus-img {
+    width: 750px;
+}
+
+#knife, #tracker {
+    position: absolute;
+    left: 130px;
+    top: 300px;
+    width: 60px;
+    height: 47px;
+}
+
+#knife {
+    z-index: -1;
+}
+
+#tracker:hover {
+    cursor: grab;
+}
+
+
+
+
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main > * {
+    margin-top: 60px;
+}
+
+#title {
+    width: 400px;
+    margin-top: 100px;
+}
+
+#main > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#main > div > label {
+    margin-left: 10px;
+    margin-bottom: 4px;
+    font-size: 20px;
+}
+
+#name, #id {
+    height: 50px;
+    border-radius: 16px;
+    background-color: transparent;
+}
+
+#name {
+    width: 300px;
+}
+
+#id {
+    width: 250px;
+}
+
+#create {
+    width: 300px;
+    height: 60px;
+    border-radius: 25px;
+    background: white;
+    color: #0a0a0a;
+    font-weight: bold;
+    font-size: 30px;
+    transition: color .3s, background-color .3s;
+}
+
+#create:hover {
+    background: transparent;
+    color: white;
+}
+
+#join {
+    border: none;
+    width: 40px;
+    height: 50px;
+    background-color: transparent;
+    background-image: url('/images/send.png');
+    background-size: auto 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#join:hover {
+    background-size: auto 36px;
+}
+
+#edit {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 100px;
+    height: 100px;
+
+    border: none;
+    background-color: transparent;
+    background-image: url('/images/edit.png');
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#edit-bg {
+    position: absolute;
+    background-color: transparent;
+    right: 20px;
+    top: 20px;
+    width: 160px;
+    height: 160px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .3s ease;
+    animation: none;
+}
+
+#edit:hover + #edit-bg {
+    opacity: 1;
+    animation: shake .2s linear infinite alternate;
+
+}
