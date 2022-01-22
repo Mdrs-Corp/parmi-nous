@@ -33,7 +33,7 @@ app.get('/game', (req, res) => {
         let id = randomString(4);
         while (games.has(id))
             id = randomString(4);
-        
+
         games.set(id, new Game(id));
         res.redirect(`/game/${id}`);
     }
@@ -68,6 +68,7 @@ io.on('connection', socket => {
         socket.join(game.id);
         const player = game.addPlayer(socket, playerId);
         io.in(game.id).emit('event', `${player.name} a rejoint le salon`);
+        io.in(game.id).emit('gameInfo', game.getInfo());
 
         // gato
         socket.on('message', (message: string) => io.in(game.id).emit('message', player.name, message));

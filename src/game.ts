@@ -7,7 +7,7 @@ class Game {
     sockets: Map<string, Socket> = new Map();
     players: Map<string, Player> = new Map();
     pending: Map<string, string> = new Map();
-    
+
     owner: string | null = null;
     open = true;
     ready = false;
@@ -45,7 +45,7 @@ class Game {
 
     playerReady(id: string) {
         this.players.get(id)!.ready = true;
-        
+
         this.ready = true;
         this.players.forEach(player => {
             if (!player.ready) {
@@ -81,6 +81,19 @@ class Game {
         this.players.forEach(player => {
             player.updateAnimationFrame();
         })
+    }
+
+    getInfo() {
+
+      const players: { id: string, name: string }[] = [];
+      this.players.forEach(player => {
+        players.push({id: player.id, name: player.name});
+      });
+
+      return {
+        players: players,
+        owner: this.owner,
+      };
     }
 }
 
