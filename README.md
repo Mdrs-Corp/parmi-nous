@@ -7,4 +7,4 @@ voila
 - `npm start` ou `node dist/app`  
 Le server est sur le port 8080 en local  
 
-⚠️ PULL REQUEST ET PAS PUSH SVP ⚠️ (faites un fork ou une nouvelle branche)
+PULL REQUEST ✅ PUSH ❌ (faites un fork ou une nouvelle branche svp)
