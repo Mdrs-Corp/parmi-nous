@@ -18,6 +18,15 @@ class Game {
 
     constructor(id: string) {
         this.id = id;
+
+        for (let i = 0; i < 100; i++) {
+          const baseX = Math.random()*2600;
+          const baseY = Math.random()*2400;
+          const endX = Math.cos(Math.random()*Math.PI*2)*(Math.random()+1)*200;
+          const endY = Math.sin(Math.random()*Math.PI*2)*(Math.random()+1)*200;
+          this.walls.push(Segment.from(baseX, baseY, baseX + endX, baseY + endY));
+          this.walls.push(Segment.from(baseX + endX, baseY + endY, baseX, baseY));
+        }
     }
 
     waitPlayer(id: string, name: string) {
