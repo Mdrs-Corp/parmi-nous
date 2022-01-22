@@ -132,7 +132,7 @@ function drawFieldOfView(origin, player, hits) {
     grad.addColorStop(1, '#000000cf');
     ctx.fillStyle = grad;
     ctx.fill();
-    
+
     // sans ça y a des bordures sus
     ctx.strokeStyle = '#0000008f';
     ctx.stroke();
