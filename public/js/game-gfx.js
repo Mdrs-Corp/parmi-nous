@@ -42,7 +42,7 @@ function draw(player) {
     const facingWalls = walls.filter(wall => wall.n.x * (wall.A.x - player.position.x) + wall.n.y * (wall.A.y - player.position.y) <= 0);
     const hits = fieldOfView(player.position, player.viewDistance, facingWalls);
 
-    drawFieldOfView(origin, hits);
+    drawFieldOfView(origin, player, hits);
     if (debug)
         drawDebug(origin, facingWalls, hits);
 
@@ -55,7 +55,7 @@ function draw(player) {
 /** @param {Point} origin */
 function drawEnvironment(origin) {
     ctx.drawImage(sprites.get('map'), origin.x, origin.y, cw/res, ch/res, 0, 0, cw, ch);
-    ctx.fillStyle = '#000000aa';
+    ctx.fillStyle = '#000000cf';
     ctx.fillRect(0, 0, cw, ch);
 }
 
@@ -97,7 +97,7 @@ function drawPlayer(origin, player) {
  * @param {Player} player
  * @param {Point[]} hits
  */
-function drawFieldOfView(origin, hits) {
+function drawFieldOfView(origin, player, hits) {
     ctx.save();
     ctx.beginPath();
     ctx.moveTo((hits[hits.length - 1].x - origin.x)*res, (hits[hits.length - 1].y - origin.y)*res);
@@ -107,6 +107,19 @@ function drawFieldOfView(origin, hits) {
 
     ctx.clip();
     ctx.drawImage(sprites.get('map'), origin.x, origin.y, cw/res, ch/res, 0, 0, cw, ch);
+
+    const x = (player.position.x - origin.x)*res;
+    const y = (player.position.y - origin.y)*res;
+    const grad = ctx.createRadialGradient(x, y, 50, x, y, player.viewDistance*2);
+    grad.addColorStop(0, '#00000000');
+    grad.addColorStop(1, '#000000cf');
+    ctx.fillStyle = grad;
+    ctx.fill();
+    
+    // sans ça y a des bordures sus
+    ctx.strokeStyle = '#0000008f';
+    ctx.stroke();
+
     ctx.restore();
 }
 
