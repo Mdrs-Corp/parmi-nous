@@ -9,7 +9,7 @@ let debug = true;
  * @property {boolean} alive
  * @property {number} frame
  * @property {boolean} flipped
- * @property {Player[]} visible 
+ * @property {Player[]} visible
  */
 
 /** @type {Map<string, HTMLImageElement>} */
@@ -29,11 +29,15 @@ socket.on('update', player => {
     requestAnimationFrame(() => draw(player));
 })
 
+socket.on('gameInfo', data => {
+    requestAnimationFrame(() => drawInfo(data));
+})
+
 /**
  * @param {CanvasRenderingContext2D} ctx
  * @param {Player} player
  */
-function draw(player) {  
+function draw(player) {
     const origin = new Point(player.position.x - cw/(2*res), player.position.y - ch/(2*res));
 
     ctx.clearRect(0, 0, cw, ch);
@@ -50,6 +54,19 @@ function draw(player) {
 
     for (const p of player.visible)
         drawPlayer(origin, p);
+}
+
+function drawInfo(data) {
+    ctx.clearRect(0, 0, cw, ch);
+
+    ctx.font = '48px Varela';
+    ctx.fillStyle = 'white';
+    ctx.fillText('player(s):', 10, 50);
+    for (const index in data.players)
+      ctx.fillText(data.players[index].name + (data.players[index].id == data.owner ? "👑" : ""), 30, 130+index*60);
+
+    if (data.owner == playerId)
+      ctx.fillText('type !start to start', cw/2, 50);
 }
 
 /** @param {Point} origin */
